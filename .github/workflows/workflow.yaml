@@ -60,13 +60,13 @@ jobs:
             fi
 
             # Pull the latest image from ECR
-            sudo docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+            sudo docker pull ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
 
             # Stop the currently running container (if any)
-            CONTAINER_ID=$(sudo docker ps -q --filter "ancestor=$ECR_REGISTRY/$ECR_REPOSITORY")
+            CONTAINER_ID=$(sudo docker ps -q --filter "ancestor=${ECR_REGISTRY}/${ECR_REPOSITORY}")
             if [ "$CONTAINER_ID" ]; then
-              sudo docker stop $CONTAINER_ID
-              sudo docker rm $CONTAINER_ID
+              sudo docker stop ${CONTAINER_ID}
+              sudo docker rm ${CONTAINER_ID}
             fi
 
             # Run the Docker container
